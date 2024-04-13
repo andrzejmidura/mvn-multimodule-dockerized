@@ -10,10 +10,12 @@ services:
       dockerfile: delivery/Dockerfile-dev-delivery
     ports:
       - "5000:8080"
+      - "5001:5001"
     environment:
       - SPRING_PROFILES_ACTIVE=development
       - logging.level.org.springframework.web=DEBUG
       - logging.level.org.hibernate=DEBUG
+      - JAVA_TOOL_OPTIONS="-agentlib:jdwp=transport=dt_socket,address=*:5001,server=y,suspend=n"
   store:
     container_name: store
     image: store
@@ -22,7 +24,9 @@ services:
       dockerfile: store/Dockerfile-dev-store
     ports:
       - "5010:8080"
+      - "5011:5011"
     environment:
       - SPRING_PROFILES_ACTIVE=development
       - logging.level.org.springframework.web=DEBUG
       - logging.level.org.hibernate=DEBUG
+      - JAVA_TOOL_OPTIONS="-agentlib:jdwp=transport=dt_socket,address=*:5011,server=y,suspend=n"
