@@ -1,0 +1,28 @@
+version: '3.9'
+name: mvn-multimodule-dockerized-dev
+
+services:
+  delivery:
+    container_name: delivery
+    image: delivery
+    build:
+      context: ../
+      dockerfile: delivery/Dockerfile-dev-delivery
+    ports:
+      - "5000:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=development
+      - logging.level.org.springframework.web=DEBUG
+      - logging.level.org.hibernate=DEBUG
+  store:
+    container_name: store
+    image: store
+    build:
+      context: ../
+      dockerfile: store/Dockerfile-dev-store
+    ports:
+      - "5010:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=development
+      - logging.level.org.springframework.web=DEBUG
+      - logging.level.org.hibernate=DEBUG

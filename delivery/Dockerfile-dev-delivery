@@ -1,0 +1,7 @@
+FROM openjdk:21-slim-bullseye as runtime
+
+WORKDIR /app
+
+COPY delivery/target/delivery.jar ./
+
+ENTRYPOINT ["java", "-jar", "delivery.jar"]

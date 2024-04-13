@@ -1,0 +1,15 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: delivery
+
+logging:
+  level:
+    org.springframework.web: DEBUG
+    org.hibernate: DEBUG
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui
